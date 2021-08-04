@@ -155,13 +155,13 @@ if (isset($_GET['apicall'])) {
         case 'carlist':
             $stat = 0;
             $plate = $_POST['lplate'];
-            $stmt = $db->prepare("SELECT * FROM park_in WHERE card_code = ? AND status = ? order by entre_time desc");
+            $stmt = $db->prepare("SELECT * FROM park_in WHERE card_code = ? AND `status` = ? order by entre_time desc");
             $stmt->execute([$plate, $stat]);
             $rowNum = $stmt->rowCount();
             $date_now = date("Y-m-d H:i:s");
 
             while ($row = $stmt->fetch()) {
-                $stmt2 = $db->prepare("SELECT u_names FROM tbl_user_access WHERE lst_insert_id = ? AND function = 3");
+                $stmt2 = $db->prepare("SELECT u_names FROM tbl_user_access WHERE lst_insert_id = ? AND `function` = 3");
                 $stmt2->execute([$row['user']]);
                 $row2 = $stmt2->fetch();
 
