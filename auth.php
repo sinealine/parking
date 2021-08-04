@@ -107,13 +107,13 @@ if (isset($_GET['apicall'])) {
                 $password = $_POST['password'];
                 $date_now = date("Y-m-d H:i:s");
 
-                $stmt = $db->prepare("SELECT * FROM tbl_user_access WHERE username='" . $username . "' AND password='" . $password . "' AND function = 3");
+                $stmt = $db->prepare("SELECT * FROM tbl_user_access WHERE username='" . $username . "' AND password='" . $password . "' AND `function` = 3");
                 $stmt->execute();
 
                 if ($stmt->rowCount() > 0) {
                     $row = $stmt->fetch();
                     $id = $row['lst_insert_id'];
-                    $stmt2 = $db->prepare("UPDATE `tbl_user_access` SET `last_logged_in` = '$date_now' WHERE `lst_insert_id` = '$id' AND function = 3");
+                    $stmt2 = $db->prepare("UPDATE `tbl_user_access` SET `last_logged_in` = '$date_now' WHERE `lst_insert_id` = '$id' AND `function` = 3");
                     $stmt2->execute();
 
                     $user = array(
@@ -268,7 +268,7 @@ if (isset($_GET['apicall'])) {
         case 'logout':
             $id = $_POST['id'];
             $date_now = date("Y-m-d H:i:s");
-            $stmt2 = $db->prepare("UPDATE `tbl_user_access` SET `last_logged_out` = '$date_now' WHERE `lst_insert_id` = '$id' AND function = 3");
+            $stmt2 = $db->prepare("UPDATE `tbl_user_access` SET `last_logged_out` = '$date_now' WHERE `lst_insert_id` = '$id' AND `function` = 3");
             if ($stmt2->execute()) {
                 $response['error'] = false;
             } else {
