@@ -1,7 +1,7 @@
 <?php
 ob_start();
-require_once "./include/initialize.php";
-alert("login");
+include "./include/initialize.php";
+// alert("login");
 if (isset($_REQUEST['loginbtn'])) {
     $sql = $db->prepare("SELECT * FROM tbl_user_access WHERE username='" . $_REQUEST['username'] . "' AND password='" . $_REQUEST['password'] . "' AND `function`=2 ");
     $sql->execute();
@@ -34,7 +34,7 @@ if (isset($_REQUEST['loginbtn'])) {
     }
 } else {
 
-    $sql = $db->prepare("SELECT * FROM tbl_user_access WHERE username='guest' AND password=ENCODE('" . htmlspecialchars('itec', ENT_QUOTES) . "','ltd') ");
+    $sql = $db->prepare("SELECT * FROM tbl_user_access WHERE username='guest' AND password= 123 ");
     $sql->execute();
     if ($sql->rowCount() != 0) {
         $res = $sql->fetch();
