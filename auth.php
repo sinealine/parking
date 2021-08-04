@@ -56,7 +56,6 @@ if (isset($_GET['apicall'])) {
     // android app access apis
 
     $response = array();
-    $response['yo'] = "h";
 
     switch ($_GET['apicall']) {
             //  working api
