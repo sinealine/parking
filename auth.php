@@ -1,7 +1,7 @@
 <?php
 ob_start();
 require_once "./include/initialize.php";
-
+alert("login");
 if (isset($_REQUEST['loginbtn'])) {
     $sql = $db->prepare("SELECT * FROM tbl_user_access WHERE username='" . $_REQUEST['username'] . "' AND password='" . $_REQUEST['password'] . "' AND `function`=2 ");
     $sql->execute();
@@ -56,6 +56,7 @@ if (isset($_GET['apicall'])) {
     // android app access apis
 
     $response = array();
+    $response['yo'] = "h";
 
     switch ($_GET['apicall']) {
             //  working api
