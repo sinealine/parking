@@ -6,7 +6,7 @@ if (isset($_POST['btn-save'])) {
     $u_names = $_POST['u_names'];
     $u_email = $_POST['u_email'];
     $u_phone = $_POST['u_phone'];
-    $fnct = $_POST['fnct'];
+    $fnct = 3;
     $creat_date = date("Y-m-d");
 
     $pwd = rand(10000, 99999);
@@ -23,7 +23,7 @@ if (isset($_POST['btn-save'])) {
     }
     try {
       $sql = " INSERT INTO tbl_user_access(u_names, username, password, email, phone, function,lst_insert_id, status, date) 
-			        VALUES ('$u_names','$u_phone','$pwd,'$u_email','$u_phone','$fnct','$lastId','Active','$creat_date')";
+			        VALUES ('$u_names','$u_names','$pwd,'$u_email','$u_phone','$fnct','$lastId','Active','$creat_date')";
       $conn->exec($sql);
     } catch (PDOException $e) {
       echo $e->getMessage();
