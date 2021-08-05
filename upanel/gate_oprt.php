@@ -23,7 +23,7 @@ if (isset($_POST['btn-save'])) {
     }
     try {
       $sql = " INSERT INTO tbl_user_access(u_names, username, `password`, email, phone, `function`,lst_insert_id, `status`, `date`) 
-			        VALUES ('$u_names','$u_names','$pwd','$u_email','$u_phone','$fnct','$lastId','Active','$creat_date')";
+			        VALUES ('$u_names','$u_phone','$pwd','$u_email','$u_phone','$fnct','$lastId','Active','$creat_date')";
       $conn->exec($sql);
     } catch (PDOException $e) {
       echo $e->getMessage();
@@ -58,7 +58,7 @@ if (isset($_GET['user_data'])) {
     echo $e->getMessage();
   }
 
-  echo '<meta http-equiv="refresh"' . 'content="3;URL=index?page=operator">';
+  echo '<meta http-equiv="refresh"' . 'content="3;URL=index.php?page=operator">';
 }
 
 // Deleting User
@@ -82,7 +82,7 @@ if (isset($_GET['delete_id'])) {
     echo $e->getMessage();
   }
 
-  echo '<meta http-equiv="refresh"' . 'content="3;URL=index?page=operator">';
+  echo '<meta http-equiv="refresh"' . 'content="3;URL=index.php?page=operator">';
 }
 ?>
 
