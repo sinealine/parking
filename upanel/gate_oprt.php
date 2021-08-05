@@ -14,8 +14,8 @@ if (isset($_POST['btn-save'])) {
     try {
       //for new user
       $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $sql = "INSERT INTO `tbl_staff_gate_op` (`sg_name`, `sg_phone`,`sg_email`, `sg_status`, `reg_date`,`park_id`) 
-			VALUES ('$u_names','$u_phone','$u_email','1', '$creat_date','$last_ID')";
+      $sql = "INSERT INTO `tbl_staff_gate_op` (`sg_name`, `sg_phone`,`sg_email`, `sg_status`, `reg_date`) 
+			VALUES ('$u_names','$u_phone','$u_email','1', '$creat_date')";
       $conn->exec($sql);
       $lastId = $conn->lastInsertId();
     } catch (PDOException $e) {
@@ -23,35 +23,12 @@ if (isset($_POST['btn-save'])) {
     }
     try {
       $sql = " INSERT INTO tbl_user_access(u_names, username, password, email, phone, function,lst_insert_id, status, date) 
-			        VALUES ('$u_names','$u_phone',ENCODE('" . htmlspecialchars($pwd, ENT_QUOTES) . "','itecltd'),'$u_email','$u_phone','$fnct','$lastId','Active','$creat_date')";
+			        VALUES ('$u_names','$u_phone','$pwd,'$u_email','$u_phone','$fnct','$lastId','Active','$creat_date')";
       $conn->exec($sql);
     } catch (PDOException $e) {
       echo $e->getMessage();
     }
     $messave = "New User Successfully added";
-
-    $msg = " Dear $u_names you have Accesss to KCT Parking System. Login USN: $u_phone PWD: $pwd. More info,Tel :0788261153.";
-    $data = array(
-      "sender" => 'ITEC Ltd',
-      "recipients" => "$u_phone",
-      "message" => "$msg",
-    );
-
-    $url = "https://www.intouchsms.co.rw/api/sendsms/.json";
-    $data = http_build_query($data);
-    $username = "twagiramungus";
-    $password = "M00dle!!";
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_USERPWD, $username . ":" . $password);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    $result = curl_exec($ch);
-    $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
   } catch (PDOException $e) {
     echo $e->getMessage();
   }
