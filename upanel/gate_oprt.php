@@ -22,7 +22,7 @@ if (isset($_POST['btn-save'])) {
       echo $e->getMessage();
     }
     try {
-      $sql = " INSERT INTO tbl_user_access(u_names, username, password, email, phone, function,lst_insert_id, status, date) 
+      $sql = " INSERT INTO tbl_user_access(u_names, username, `password`, email, phone, `function`,lst_insert_id, `status`, `date`) 
 			        VALUES ('$u_names','$u_names','$pwd,'$u_email','$u_phone','$fnct','$lastId','Active','$creat_date')";
       $conn->exec($sql);
     } catch (PDOException $e) {
@@ -33,7 +33,7 @@ if (isset($_POST['btn-save'])) {
     echo $e->getMessage();
   }
 
-  echo '<meta http-equiv="refresh"' . 'content="3;URL=index?page=operator">';
+  echo '<meta http-equiv="refresh"' . 'content="3;URL=index.php?page=operator">';
 }
 
 // Updating User Function by select
